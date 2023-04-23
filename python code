@@ -1,0 +1,101 @@
+import requests
+api_key = "726b2e76bc9d66c75617e8e61bd317d1" 
+api_url = "https://api.themoviedb.org/3"
+
+
+params = {'query': "game", 'api_key' : api_key}
+header = {'Accept': 'application/json'}
+
+response = requests.get(api_url + "/search/tv", headers = header, params = params)
+
+# print(response.text)
+
+data = response.json()
+results = data.get('results')
+# results = data['results']
+
+for result in results:
+    print(result['original_name'])
+    
+print(response.url)
+
+import requests 
+response = requests.get('https://api.themoviedb.org/3/tv/1399?api_key=726b2e76bc9d66c75617e8e61bd317d1')
+print(response)
+print(response.status_code)
+print(response.url)
+print(response.headers)
+
+#print(response.text)
+print(response.headers['Content-Encoding'])
+#text is generated based on this content type
+
+print(response.headers['Content-Type'])
+
+#json formatter extension
+# https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa/related
+
+import requests
+api_key = "726b2e76bc9d66c75617e8e61bd317d1" 
+api_url = "https://api.themoviedb.org/3"
+
+
+params = {'query': "christian", 'api_key' : api_key}
+header = {'Accept': 'application/json'}
+
+response = requests.get(api_url + "/search/person", headers = header, params = params)
+
+print(response.url)
+print(response.text)
+
+data = response.json()
+
+results = data.get('results')
+# results = data['results']
+
+for result in results:
+    if(result['name'] =="Christian Bale"):
+        print(str(result['id']) + " : " + result['name'])
+        
+import requests
+api_key = "726b2e76bc9d66c75617e8e61bd317d1" 
+api_url = "https://api.themoviedb.org/3"
+
+
+params = {'with_cast': 3894, 'api_key' : api_key, 'sort_by' : 'popularity.desc'}
+header = {'Accept': 'application/json'}
+
+response = requests.get(api_url + "/discover/movie", headers = header, params = params)
+
+print(response.url)
+print(response.text)
+
+data = response.json()
+
+results = data.get('results')
+# results = data['results']
+
+for result in results:
+    print(result['title'] + " : " + str(result['popularity']))
+    
+    # https://api.themoviedb.org/3/tv/1399?api_key=726b2e76bc9d66c75617e8e61bd317d1
+
+# Game of thrones information
+
+import json
+import requests 
+
+response = requests.get('https://api.themoviedb.org/3/tv/1399?api_key=726b2e76bc9d66c75617e8e61bd317d1')
+
+# can also use this if we are sure if our content if json type for sure
+python_data = response.json()
+
+print(response.url)
+
+seasons = python_data['seasons']
+
+for season in seasons[1:]:
+    print("Season " + str(season['season_number']) + " : " + str(season['episode_count']) + " Episodes")
+# python_data = json.loads(response.text)
+
+print(python_data)
